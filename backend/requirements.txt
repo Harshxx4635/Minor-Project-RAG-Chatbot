@@ -1,0 +1,10 @@
+fastapi[all]
+uvicorn
+python-multipart
+langchain
+langchain-community
+groq
+PyPDF2
+sentence-transformers
+faiss-cpu
+python-dotenv
