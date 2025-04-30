@@ -25,27 +25,27 @@ def read_root():
 @app.post("/upload")
 async def upload_files(files: List[UploadFile] = File(...)):
     try:
-        # Create directories if they don't exist
-        create_directory_if_not_exists("data/pdfs")
-        create_directory_if_not_exists("data/faiss_index")
+        # Use /tmp directory for Render compatibility
+        pdf_dir = "/tmp/data/pdfs"
+        index_dir = "/tmp/data/faiss_index"
+
+        # Create directories
+        create_directory_if_not_exists(pdf_dir)
+        create_directory_if_not_exists(index_dir)
 
         file_paths = []
         for file in files:
-            file_path = f"data/pdfs/{file.filename}"
+            file_path = os.path.join(pdf_dir, file.filename)
             with open(file_path, "wb") as f:
                 f.write(await file.read())
             file_paths.append(file_path)
-        
-        # Validate uploaded files
+
+        # Validate, process, clean
         validate_pdf_files(file_paths)
-        
-        # Process PDFs
         process_pdfs(file_paths)
         log_message("PDFs processed and indexed successfully.")
-        
-        # Clean up files after processing
         cleanup_files(file_paths)
-        
+
         return {"message": "Files processed successfully"}
     except HTTPException as e:
         raise e
@@ -53,7 +53,6 @@ async def upload_files(files: List[UploadFile] = File(...)):
         log_message(f"Error processing files: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
-# Define request model for /ask endpoint
 class QuestionRequest(BaseModel):
     question: str
 
