@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://rag-chatbot-s8ow.onrender.com"; // Change if different
+const API_BASE_URL = "https://minor-project-rag-chatbot.onrender.com"; // Change if different
 
 export const uploadFiles = async (files) => {
   const formData = new FormData();
