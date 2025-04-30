@@ -30,7 +30,7 @@ const ChatBox = ({ setLoadingResponse }) => {
         setQuestion(""); // Clear input box
     
         try {
-            const response = await fetch("https://rag-chatbot-s8ow.onrender.com/ask", {
+            const response = await fetch("https://minor-project-rag-chatbot.onrender.com", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ question }),
