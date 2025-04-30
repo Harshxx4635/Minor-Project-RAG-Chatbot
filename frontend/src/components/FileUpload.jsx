@@ -30,7 +30,7 @@ const FileUpload = ({ onUploadSuccess }) => {
         files.forEach((file) => formData.append("files", file));
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/upload", {
+            const response = await fetch("https://rag-chatbot-s8ow.onrender.com/upload", {
                 method: "POST",
                 body: formData,
             });

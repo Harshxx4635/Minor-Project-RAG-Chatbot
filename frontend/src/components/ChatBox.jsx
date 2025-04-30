@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
 const ChatBox = ({ setLoadingResponse }) => {
     const [question, setQuestion] = useState("");
@@ -29,7 +30,7 @@ const ChatBox = ({ setLoadingResponse }) => {
         setQuestion(""); // Clear input box
     
         try {
-            const response = await fetch("http://127.0.0.1:8000/ask", {
+            const response = await fetch("https://rag-chatbot-s8ow.onrender.com/ask", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ question }),
@@ -110,7 +111,7 @@ const ChatBox = ({ setLoadingResponse }) => {
                                         : "bg-gray-700 text-white"
                                 }`}
                             >
-                                {msg.text}
+                                <ReactMarkdown>{msg.text}</ReactMarkdown>
                             </div>
                         </div>
                     ))}
