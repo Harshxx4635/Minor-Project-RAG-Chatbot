@@ -9,4 +9,5 @@ export default defineConfig({
     rollupOptions: {
       external: ['react-markdown'],
     }
+  }
 });
