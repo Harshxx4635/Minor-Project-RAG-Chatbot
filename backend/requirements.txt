@@ -109,6 +109,7 @@ typing-inspect==0.9.0
 typing-inspection==0.4.0
 typing_extensions==4.13.2
 urllib3==2.4.0
+uvicorn[standard]
 wcwidth==0.2.13
 webencodings==0.5.1
 yarg==0.1.9
