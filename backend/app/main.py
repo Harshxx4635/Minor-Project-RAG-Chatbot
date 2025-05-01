@@ -25,14 +25,17 @@ def read_root():
 @app.post("/upload")
 async def upload_files(files: List[UploadFile] = File(...)):
     try:
+        print("📥 /upload endpoint was called.")
+        
         # Use /tmp directory for Render compatibility
         pdf_dir = "/tmp/data/pdfs"
         index_dir = "/tmp/data/faiss_index"
 
         # Create directories
+        print("Creating dirs")
         create_directory_if_not_exists(pdf_dir)
         create_directory_if_not_exists(index_dir)
-
+        print("Dirs created")
         file_paths = []
         for file in files:
             file_path = os.path.join(pdf_dir, file.filename)
@@ -48,6 +51,7 @@ async def upload_files(files: List[UploadFile] = File(...)):
 
         return {"message": "Files processed successfully"}
     except HTTPException as e:
+        print(f"{e}")
         raise e
     except Exception as e:
         log_message(f"Error processing files: {str(e)}")
