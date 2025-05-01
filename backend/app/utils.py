@@ -24,11 +24,11 @@ def cleanup_files(file_paths: List[str]) -> None:
             print(f"Error cleaning up file {file_path}: {e}")
 
 def create_directory_if_not_exists(directory: str) -> None:
-    """
-    Create a directory if it doesn't already exist.
-    """
     if not os.path.exists(directory):
-        os.makedirs(directory)
+        os.makedirs(directory, exist_ok=True)
+        print(f"[LOG] Created directory: {directory}")
+    else:
+        print(f"[LOG] Directory already exists: {directory}")
 
 def log_message(message: str) -> None:
     """
