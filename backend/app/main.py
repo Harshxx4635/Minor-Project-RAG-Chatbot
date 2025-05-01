@@ -3,8 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import os
 from pydantic import BaseModel
-from .processing import process_pdfs, query_answer
-from .utils import validate_pdf_files, cleanup_files, create_directory_if_not_exists, log_message
+from app.processing import process_pdfs, query_answer
+from app.utils import validate_pdf_files, cleanup_files, create_directory_if_not_exists, log_message
 from dotenv import load_dotenv
 
 load_dotenv()
