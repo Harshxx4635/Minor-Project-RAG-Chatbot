@@ -7,7 +7,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from langchain_huggingface import HuggingFaceEmbeddings
 import os
-from .utils import log_message
+from app.utils import log_message
 
 # FAISS index directory under /tmp
 INDEX_DIR = "/tmp/data/faiss_index"
